@@ -1,32 +1,19 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Models\Post;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
-    return view('posts');
+    return view('posts', [
+        'posts' => Post::all()
+    ]);
 });
 
 Route::get('posts/{post}', function ($slug) {
-    $path = __DIR__ . "/../resources/posts/{$slug}.html";
-
-    if (! file_exists($path)) {
-        return redirect('/');
-    }
-
-    $post = file_get_contents($path);
     return view('post', [
-        'post' => $post
+        'post' => Post::find($slug)
     ]);
 });
 
