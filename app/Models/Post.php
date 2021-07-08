@@ -36,7 +36,6 @@ class Post
       }
 
       return $post;
-
     }
 
     public static function all()
