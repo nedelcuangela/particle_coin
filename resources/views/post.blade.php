@@ -24,8 +24,12 @@
 
                         <div class="mt-4">
                             <h1 class="text-3xl">
-                                {{$post->title}}
+                                {!! $post->title !!}
                             </h1>
+
+                            <p>
+                                By <a href="#">{{$post->user->name}}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                            </p>
 
                             <span class="mt-2 block text-gray-400 text-xs">
                                         Published on <time>{{$post->date}}</time>
